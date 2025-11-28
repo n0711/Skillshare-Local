@@ -1,0 +1,8 @@
+﻿/vendor/
+/uploads/
+/nbproject/
+.idea/
+/.vscode/
+*.log
+.DS_Store
+Thumbs.db
