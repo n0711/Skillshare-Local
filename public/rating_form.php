@@ -105,4 +105,35 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <ul class="mb-0">
             <?php foreach ($errors as $e): ?>
                 <li><?= htmlspecialchars($e) ?></li>
-            <?php endforeach;
+            <?php endforeach; ?>
+        </ul>
+    </div>
+<?php endif; ?>
+
+<?php if (!$success): ?>
+<form method="post" class="row g-3">
+  <input type="hidden" name="booking_id" value="<?= $booking_id ?>">
+
+  <div class="col-md-4">
+    <label class="form-label" for="rating">Rating</label>
+    <select name="rating" id="rating" class="form-select" required>
+      <option value="">-- choose --</option>
+      <?php for ($i = 5; $i >= 1; $i--): ?>
+        <option value="<?= $i ?>" <?= (int)$rating === $i ? "selected" : "" ?>><?= $i ?> / 5</option>
+      <?php endfor; ?>
+    </select>
+  </div>
+
+  <div class="col-12">
+    <label class="form-label" for="comment">Comment (optional)</label>
+    <textarea name="comment" id="comment" class="form-control" rows="3"><?= htmlspecialchars($comment) ?></textarea>
+  </div>
+
+  <div class="col-12">
+    <button class="btn btn-primary"><?= $existingRating ? "Update rating" : "Submit rating" ?></button>
+    <a href="booking_manage.php" class="btn btn-link">Back to my bookings</a>
+  </div>
+</form>
+<?php endif; ?>
+
+<?php require_once "../includes/footer.php"; ?>
